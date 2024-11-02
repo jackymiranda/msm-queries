@@ -16,11 +16,11 @@ class DirectorsController < ApplicationController
 
   def youngest
 
-    min_dob = Director.maximum(:date_of_birth)
+    min_dob = Director.maximum(:dob)
 
     youngest = Director.where({ :dob=> min_dob })
 
-    @minimum_dob = min_dob.at(0)
+    @minimum_dob = min_dob
     @director_name = youngest.at(0)
     
     render({ :template => "director_templates/youngest"})
