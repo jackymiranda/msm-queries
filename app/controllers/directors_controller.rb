@@ -27,7 +27,13 @@ class DirectorsController < ApplicationController
   end
 
   def eldest
+    max_dob = Director.minimum(:dob)
 
+    eldest = Director.where({ :dob=> max_dob })
+
+    @minimum_dob = max_dob
+    @director_name_old = eldest.at(0)
+    
     render({ :template => "director_templates/eldest"})
   end
 end
